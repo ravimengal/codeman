@@ -3,15 +3,18 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./Post.css";
 import GifIcon from "@material-ui/icons/Gif";
+import gifaa from "../../images/aa.gif";
 
 function Post() {
-  const [sticker, setStcker] = useState([]);
+  const [sticker, setSticker] = useState([]);
 
   useEffect(() => {
     async function getGif() {
-      const res = await axios.get(`https://api.giphy.com/v1/gifs`);
-      console.log(`gif `, res.data);
-      setStcker(res.data);
+      const res = await axios.get(
+        `https://api.giphy.com/v1/gifs/search?api_key=i8CU4nWi2I4s7YCtkSPyImXzxdyhIQDM`
+      );
+      console.log(`gif `, res.data.data);
+      setSticker(res.data.data);
     }
     getGif();
   }, []);
@@ -26,21 +29,21 @@ function Post() {
           </div>
         </div>
         <div className="post__bottom">
-          <p>Do what ever you want</p>
+          <textarea placeholder="Whats in your mind" />
         </div>
-        <div className="post__image">
-          <img alt="Here is a image" />
-        </div>
+
         <div className="post__options">
-          <input type="text" name="search" placeholder="Search.." />
           <div className="post__option">
             <GifIcon style={{ fontSize: 50 }} />
+            <input
+              className="inputbtn"
+              type="text"
+              name="search"
+              placeholder="Search.."
+            />
+            <img src={gifaa} />
           </div>
         </div>
-      </div>
-      <div className="gif">
-
-        <p>gif sticker {sticker}</p>
       </div>
     </div>
   );
