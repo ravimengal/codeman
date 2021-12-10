@@ -41,10 +41,17 @@ function Post() {
               name="search"
               placeholder="Search.."
             />
-            <img src={gifaa} />
+           
           </div>
         </div>
       </div>
+      <div className="gifdisplay">
+      <img src={gifaa} />
+      <img src={gifaa} />
+      <img src={gifaa} />
+      <img src={gifaa} />
+      </div>
+      
     </div>
   );
 }

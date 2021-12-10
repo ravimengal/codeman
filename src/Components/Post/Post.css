@@ -94,7 +94,8 @@ textarea::-webkit-scrollbar {
 img{
 
 
-
- 
+margin-top: 10px;
+ margin-right: 100px;
+ margin-left: 50px;
   width: 207px;
 }
