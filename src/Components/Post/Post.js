@@ -11,10 +11,10 @@ function Post() {
   useEffect(() => {
     async function getGif() {
       const res = await axios.get(
-        `https://api.giphy.com/v1/gifs/search?api_key=i8CU4nWi2I4s7YCtkSPyImXzxdyhIQDM`
+        `https://api.giphy.com/v1/gifs/trending?api_key=i8CU4nWi2I4s7YCtkSPyImXzxdyhIQDM&limit=25&rating=g`
       );
-      console.log(`gif `, res.data.data);
-      setSticker(res.data.data);
+      console.log(`gif `, res.data);
+      setSticker(res.data);
     }
     getGif();
   }, []);
@@ -46,6 +46,7 @@ function Post() {
         </div>
       </div>
       <div className="gifdisplay">
+        <img url={sticker} alt="gif"/>
       <img src={gifaa} />
       <img src={gifaa} />
       <img src={gifaa} />
