@@ -14,9 +14,9 @@ function Post() {
     try {
       async function getGif() {
         const res = await axios.get(
-          `http://api.giphy.com/v1/gifs/search?q=$(search)&api_key=i8CU4nWi2I4s7YCtkSPyImXzxdyhIQDM&limit=25&rating=g`
+          `https://api.giphy.com/v1/gifs/search?q=${search}&api_key=i8CU4nWi2I4s7YCtkSPyImXzxdyhIQDM`
         );
-        console.log(`gif `, res.data.data);
+        // console.log(`gif `, res.data.data); testing
         setSticker(res.data.data);
       }
       getGif();
@@ -24,11 +24,11 @@ function Post() {
       console.log("error while fetching data", error)
     }
    
-  }, []);
+  }, [search]);
   const handleSearch =(e)=>{
     e.preventDefault();
     setSearch(e.target.value)
-    console.log("value",search)
+    // console.log("value",search)//testing
 
   }
 
@@ -53,7 +53,7 @@ function Post() {
             value={search}
               className="inputbtn"
               type="text"
-              name="search"
+             
               placeholder="Search.."
             />
           </div>
