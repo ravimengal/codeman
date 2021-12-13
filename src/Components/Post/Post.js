@@ -3,21 +3,34 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./Post.css";
 import GifIcon from "@material-ui/icons/Gif";
-import gifaa from "../../images/aa.gif";
+import gifaa from "../../images/aa.gif";// testing gif
 
 function Post() {
-  const [sticker, setSticker] = useState([]);
+  const [stickers, setSticker] = useState([]);
+  const [search,setSearch]=useState("")
 
   useEffect(() => {
-    async function getGif() {
-      const res = await axios.get(
-        `https://api.giphy.com/v1/gifs/trending?api_key=i8CU4nWi2I4s7YCtkSPyImXzxdyhIQDM&limit=25&rating=g`
-      );
-      console.log(`gif `, res.data);
-      setSticker(res.data);
+
+    try {
+      async function getGif() {
+        const res = await axios.get(
+          `http://api.giphy.com/v1/gifs/search?q=$(search)&api_key=i8CU4nWi2I4s7YCtkSPyImXzxdyhIQDM&limit=25&rating=g`
+        );
+        console.log(`gif `, res.data.data);
+        setSticker(res.data.data);
+      }
+      getGif();
+    } catch (error) {
+      console.log("error while fetching data", error)
     }
-    getGif();
+   
   }, []);
+  const handleSearch =(e)=>{
+    e.preventDefault();
+    setSearch(e.target.value)
+    console.log("value",search)
+
+  }
 
   return (
     <div className="Card_combine">
@@ -36,23 +49,21 @@ function Post() {
           <div className="post__option">
             <GifIcon style={{ fontSize: 50 }} />
             <input
+            onChange={handleSearch}
+            value={search}
               className="inputbtn"
               type="text"
               name="search"
               placeholder="Search.."
             />
-           
           </div>
         </div>
       </div>
       <div className="gifdisplay">
-        <img url={sticker} alt="gif"/>
-      <img src={gifaa} />
-      <img src={gifaa} />
-      <img src={gifaa} />
-      <img src={gifaa} />
+        {stickers.map((sticker) => (
+          <img alt="gif " key={sticker.id} src={sticker.images.fixed_height_small.url} />
+        ))}
       </div>
-      
     </div>
   );
 }
