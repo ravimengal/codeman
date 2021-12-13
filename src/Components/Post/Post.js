@@ -14,7 +14,7 @@ function Post() {
     try {
       async function getGif() {
         const res = await axios.get(
-          `https://api.giphy.com/v1/gifs/search?q=${search}&api_key=i8CU4nWi2I4s7YCtkSPyImXzxdyhIQDM`
+          `https://api.giphy.com/v1/gifs/search?q=${search}&api_key=i8CU4nWi2I4s7YCtkSPyImXzxdyhIQDM&limit=5`
         );
         // console.log(`gif `, res.data.data); testing
         setSticker(res.data.data);
@@ -59,7 +59,7 @@ function Post() {
           </div>
         </div>
       </div>
-      <div className="gifdisplay">
+      <div className="gifdisplay ">
         {stickers.map((sticker) => (
           <img alt="gif " key={sticker.id} src={sticker.images.fixed_height_small.url} />
         ))}

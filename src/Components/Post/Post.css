@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-color: black;
+  
 
 }
 .post {
@@ -101,6 +101,7 @@ margin-top: 10px;
 }
 
 .gifdisplay{
+  display: grid;
 
 
 
